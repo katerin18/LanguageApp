@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Language App</string>
+    <string name="no_connection_text">No Internet connection</string>
+    <string name="check_again_text">Check again</string>
 </resources>
