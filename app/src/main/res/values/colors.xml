@@ -4,4 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue_btn">#5B7BFE</color>
     <color name="primary_color">#410FA3</color>
+    <color name="item_background">#FFF6EB</color>
+    <color name="item_chose_background">#F76400</color>
+
 </resources>
