@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.example.languageapp.R
-import com.example.languageapp.onboarding.OnBoardingStateManager
+import com.example.languageapp.onboarding.LoginStateManager
 
 class ThirdScreenOnboarding : Fragment() {
 
@@ -21,12 +21,12 @@ class ThirdScreenOnboarding : Fragment() {
         val btnFinish = view.findViewById<Button>(R.id.btn_choose_lang)
         val textViewSkip = view.findViewById<TextView>(R.id.third_skip_text_view)
         btnFinish.setOnClickListener {
-            OnBoardingStateManager.onBoardingCompleted(requireActivity())
-            findNavController().navigate(R.id.action_viewPagerFragment_to_chooseLanguageFragment)
+            LoginStateManager.onBoardingCompleted(requireActivity())
+            findNavController().navigate(R.id.action_viewPagerFragment_to_loginScreenFragment)
         }
         textViewSkip.setOnClickListener {
-            OnBoardingStateManager.onBoardingCompleted(requireActivity())
-            findNavController().navigate(R.id.action_viewPagerFragment_to_chooseLanguageFragment)
+            LoginStateManager.onBoardingCompleted(requireActivity())
+            findNavController().navigate(R.id.action_viewPagerFragment_to_loginScreenFragment)
         }
 
         return view

@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.languageapp.R
-import com.example.languageapp.onboarding.OnBoardingStateManager
+import com.example.languageapp.onboarding.LoginStateManager
 
 class SecondScreenOnboarding : Fragment() {
     override fun onCreateView(
@@ -28,8 +28,8 @@ class SecondScreenOnboarding : Fragment() {
         }
 
         textViewSkip.setOnClickListener {
-            OnBoardingStateManager.onBoardingCompleted(requireActivity())
-            findNavController().navigate(R.id.action_viewPagerFragment_to_chooseLanguageFragment)
+            LoginStateManager.onBoardingCompleted(requireActivity())
+            findNavController().navigate(R.id.action_viewPagerFragment_to_loginScreenFragment)
         }
 
         return view

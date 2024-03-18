@@ -9,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.languageapp.onboarding.AUTHORIZED_STATE_KEY
 import com.example.languageapp.onboarding.FINISHED_STATE_KEY
+import com.example.languageapp.onboarding.PREF_AUTH_NAME
 import com.example.languageapp.onboarding.PREF_COMPLETE_NAME
 
 @SuppressLint("CustomSplashScreen")
@@ -20,7 +22,11 @@ class SplashScreenFragment : Fragment() {
     ): View? {
         Handler().postDelayed({
             if (isOnBoardingCompleted()) {
-                findNavController().navigate(R.id.action_splashScreenFragment_to_chooseLanguageFragment)
+                if (isUserAuthorized()) {
+                    findNavController().navigate(R.id.action_splashScreenFragment_to_homeFragment)
+                } else {
+                    findNavController().navigate(R.id.action_splashScreenFragment_to_loginScreenFragment)
+                }
             } else {
                 findNavController().navigate(R.id.action_splashScreenFragment_to_viewPagerFragment)
             }
@@ -33,5 +39,10 @@ class SplashScreenFragment : Fragment() {
         val sharedPref =
             requireActivity().getSharedPreferences(PREF_COMPLETE_NAME, Context.MODE_PRIVATE)
         return sharedPref.getBoolean(FINISHED_STATE_KEY, false)
+    }
+
+    private fun isUserAuthorized(): Boolean {
+        val sharedPref = requireActivity().getSharedPreferences(PREF_AUTH_NAME, Context.MODE_PRIVATE)
+        return sharedPref.getBoolean(AUTHORIZED_STATE_KEY, false)
     }
 }
