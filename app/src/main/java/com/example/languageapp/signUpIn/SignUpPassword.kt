@@ -1,6 +1,8 @@
 package com.example.languageapp.signUpIn
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +14,7 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.languageapp.R
+import com.example.languageapp.UserDataLogicImpl
 
 class SignUpPassword : Fragment() {
     private val viewModel: UserViewModel by activityViewModels()
@@ -27,20 +30,35 @@ class SignUpPassword : Fragment() {
         val buttonSignUp = view.findViewById<Button>(R.id.btn_complete_signUp)
         val editTextPass = view.findViewById<EditText>(R.id.editText_pass)
         val editTextConfirmedPass = view.findViewById<EditText>(R.id.editText_confirm_pass)
+        val userDataLogicImpl = UserDataLogicImpl()
 
         textViewSignIn.setOnClickListener {
             findNavController().navigate(R.id.action_signUpPassword_to_loginScreenFragment)
         }
 
+        editTextPass.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (!userDataLogicImpl.isValidData(s.toString(), PASSWORD_PATTERN)) {
+                    editTextPass.error = "Incorrect password format!"
+                } else {
+                    editTextPass.error = null
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+
+        })
+
         buttonSignUp.setOnClickListener {
             val password = editTextPass.text.toString()
             val confirmedPassword = editTextConfirmedPass.text.toString()
 
-            if (isPasswordCorrect(password)) {
+            if (userDataLogicImpl.isValidData(password, PASSWORD_PATTERN)) {
                 if (password == confirmedPassword) {
-                    val userWithPassword = viewModel.combineWithPassword(password)
+                    val userWithPassword = viewModel.combineWithPassword(userDataLogicImpl.hashedPass(password))
                     if (userWithPassword != null) {
-                        viewModel.registerNewUser(userWithPassword)
+                        userDataLogicImpl.registerNewUser(userWithPassword)
 
                         findNavController().navigate(R.id.action_signUpPassword_to_homeFragment)
                     }
@@ -60,11 +78,5 @@ class SignUpPassword : Fragment() {
             }
         }
         return view
-    }
-
-
-    private fun isPasswordCorrect(password: String): Boolean {
-        return password.isNotEmpty()
-        // TODO: realize correct password checking
     }
 }

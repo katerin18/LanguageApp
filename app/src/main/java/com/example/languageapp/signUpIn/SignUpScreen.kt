@@ -1,7 +1,8 @@
 package com.example.languageapp.signUpIn
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +10,15 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.languageapp.R
+import com.example.languageapp.UserDataLogicImpl
+
+const val PASSWORD_PATTERN = "^(?=\\S+$).{8,20}$"
+const val EMAIL_PATTERN = "[a-z0-9._-]+@[a-z]+\\.+[a-z]+"
+const val USERNAME_PATTERN = "^[a-zA-Z0-9_-]+$"
 
 class SignUpScreen : Fragment() {
     private val viewModel: UserViewModel by activityViewModels()
@@ -25,13 +32,47 @@ class SignUpScreen : Fragment() {
         val firstNameEditText = view.findViewById<EditText>(R.id.editText_firstname)
         val lastNameEditText = view.findViewById<EditText>(R.id.editText_lastname)
         val emailEditText = view.findViewById<EditText>(R.id.editText_email)
-
         val signInTextView = view.findViewById<TextView>(R.id.tView_signIn)
         val continueButton = view.findViewById<Button>(R.id.btn_continue_signUp)
 
+        val userDataLogicImpl = UserDataLogicImpl()
         signInTextView.setOnClickListener {
             findNavController().navigate(R.id.action_signUpScreen_to_loginScreenFragment)
         }
+
+        firstNameEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (!userDataLogicImpl.isValidData(s.toString(), USERNAME_PATTERN)) {
+                    firstNameEditText.error = "Incorrect format of firstname!"
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+
+        })
+
+        lastNameEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (!userDataLogicImpl.isValidData(s.toString(), USERNAME_PATTERN)) {
+                    lastNameEditText.error = "Incorrect format of lastname!"
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+
+        emailEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (!userDataLogicImpl.isValidData(s.toString(), EMAIL_PATTERN)) {
+                    emailEditText.error = "Incorrect email format!"
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
 
         continueButton.setOnClickListener {
             val firstNameData = firstNameEditText.text.toString()
@@ -43,7 +84,7 @@ class SignUpScreen : Fragment() {
                 lastname = lastNameData,
                 email = emailData
             )
-            if (isCorrectEnteredData(newUserModel)) {
+            if (userDataLogicImpl.isEverythingOkay(newUserModel)) {
                 viewModel.setRegistrationData(newUserModel)
                 findNavController().navigate(R.id.action_signUpScreen_to_signUpPassword)
             } else {
@@ -52,10 +93,5 @@ class SignUpScreen : Fragment() {
         }
 
         return view
-    }
-
-    private fun isCorrectEnteredData(user: NewUser): Boolean {
-        return user.firstname.isNotEmpty() && user.lastname.isNotEmpty() && user.email.isNotEmpty()
-        // TODO: realize correct data checking
     }
 }

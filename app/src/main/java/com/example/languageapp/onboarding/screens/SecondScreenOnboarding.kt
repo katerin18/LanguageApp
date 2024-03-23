@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.languageapp.R
-import com.example.languageapp.onboarding.LoginStateManager
+import com.example.languageapp.UserDataLogicImpl
 
 class SecondScreenOnboarding : Fragment() {
     override fun onCreateView(
@@ -23,12 +23,14 @@ class SecondScreenOnboarding : Fragment() {
         val btnMore = view.findViewById<Button>(R.id.btn_more)
         val textViewSkip = view.findViewById<TextView>(R.id.second_skip_text_view)
 
+        val userDataLogicImpl = UserDataLogicImpl()
+
         btnMore.setOnClickListener {
             viewPager?.currentItem = 2
         }
 
         textViewSkip.setOnClickListener {
-            LoginStateManager.onBoardingCompleted(requireActivity())
+            userDataLogicImpl.onBoardingCompleted(requireActivity())
             findNavController().navigate(R.id.action_viewPagerFragment_to_loginScreenFragment)
         }
 

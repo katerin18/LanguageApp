@@ -1,6 +1,8 @@
 package com.example.languageapp.signUpIn
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,15 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.languageapp.R
-import com.example.languageapp.onboarding.LoginStateManager.userAuthorized
-import io.github.jan.supabase.createSupabaseClient
-import io.github.jan.supabase.postgrest.Postgrest
-import io.github.jan.supabase.postgrest.from
-import io.github.jan.supabase.postgrest.query.Columns
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
+import com.example.languageapp.UserDataLogicImpl
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class LoginScreenFragment : Fragment() {
     override fun onCreateView(
@@ -34,14 +29,40 @@ class LoginScreenFragment : Fragment() {
         val emailEditText = view.findViewById<EditText>(R.id.editText_email_login)
         val passEditText = view.findViewById<EditText>(R.id.editText_pass_login)
 
+        val userDataLogicImpl = UserDataLogicImpl()
+
+        emailEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (!userDataLogicImpl.isValidData(s.toString(), EMAIL_PATTERN)) {
+                    emailEditText.error = "Input valid email!"
+                }
+            }
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+
+        passEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (!userDataLogicImpl.isValidData(s.toString(), PASSWORD_PATTERN)) {
+                    passEditText.error = "Input valid password!"
+                }
+            }
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString()
             val password = passEditText.text.toString()
 
-            if (isDataCorrect(email, password)) {
+            if (userDataLogicImpl.isValidData(
+                    email,
+                    EMAIL_PATTERN
+                ) && userDataLogicImpl.isValidData(password, PASSWORD_PATTERN)
+            ) {
                 lifecycleScope.launch {
-                    if (getUserData(email, password).isNotEmpty()) {
-                        userAuthorized(requireContext(), email)
+                    if (userDataLogicImpl.getUserData(email, password).isNotEmpty()) {
+                        userDataLogicImpl.toAuthorizeUser(requireContext(), email)
                         findNavController().navigate(R.id.action_loginScreenFragment_to_homeFragment)
                     } else {
                         Toast.makeText(
@@ -62,37 +83,4 @@ class LoginScreenFragment : Fragment() {
 
         return view
     }
-
-    private fun isDataCorrect(email: String, password: String): Boolean {
-        return email.isNotEmpty() && password.isNotEmpty()
-        // TODO: realize checking if the data is correct
-    }
-
-    private suspend fun getUserData(email: String, password: String): List<NewUser> =
-        withContext(Dispatchers.IO) {
-            val supabaseClient = createSupabaseClient(
-                supabaseUrl = PROJECT_URL,
-                supabaseKey = SUPABASE_KEY
-            ) { install(Postgrest) }
-
-            val userData: List<NewUser> = async {
-                supabaseClient.from("users")
-                    .select(
-                        columns = Columns.list(
-                            "firstname",
-                            "lastname",
-                            "email",
-                            "password",
-                            "score"
-                        )
-                    ) {
-                        filter {
-                            eq("email", email)
-                            eq("password", password)
-                        }
-                    }.decodeList<NewUser>()
-            }.await()
-
-            userData
-        }
 }

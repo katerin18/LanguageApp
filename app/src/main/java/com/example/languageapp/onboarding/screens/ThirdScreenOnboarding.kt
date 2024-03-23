@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.example.languageapp.R
-import com.example.languageapp.onboarding.LoginStateManager
+import com.example.languageapp.UserDataLogicImpl
 
 class ThirdScreenOnboarding : Fragment() {
 
@@ -20,12 +20,14 @@ class ThirdScreenOnboarding : Fragment() {
         val view = inflater.inflate(R.layout.fragment_third_screen_onboarding, container, false)
         val btnFinish = view.findViewById<Button>(R.id.btn_choose_lang)
         val textViewSkip = view.findViewById<TextView>(R.id.third_skip_text_view)
+        val userDataLogicImpl = UserDataLogicImpl()
+
         btnFinish.setOnClickListener {
-            LoginStateManager.onBoardingCompleted(requireActivity())
+            userDataLogicImpl.onBoardingCompleted(requireActivity())
             findNavController().navigate(R.id.action_viewPagerFragment_to_loginScreenFragment)
         }
         textViewSkip.setOnClickListener {
-            LoginStateManager.onBoardingCompleted(requireActivity())
+            userDataLogicImpl.onBoardingCompleted(requireActivity())
             findNavController().navigate(R.id.action_viewPagerFragment_to_loginScreenFragment)
         }
 
