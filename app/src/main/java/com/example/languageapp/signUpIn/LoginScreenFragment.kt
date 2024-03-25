@@ -38,6 +38,7 @@ class LoginScreenFragment : Fragment() {
                     emailEditText.error = "Input valid email!"
                 }
             }
+
             override fun afterTextChanged(p0: Editable?) {}
         })
 
@@ -48,6 +49,7 @@ class LoginScreenFragment : Fragment() {
                     passEditText.error = "Input valid password!"
                 }
             }
+
             override fun afterTextChanged(p0: Editable?) {}
         })
 
@@ -61,8 +63,9 @@ class LoginScreenFragment : Fragment() {
                 ) && userDataLogicImpl.isValidData(password, PASSWORD_PATTERN)
             ) {
                 lifecycleScope.launch {
-                    if (userDataLogicImpl.getUserData(email, password).isNotEmpty()) {
-                        userDataLogicImpl.toAuthorizeUser(requireContext(), email)
+                    if (userDataLogicImpl.getExistedUser(email, password).isNotEmpty()) {
+                        userDataLogicImpl.makeAuthSharedFlag(requireContext(), email, password)
+
                         findNavController().navigate(R.id.action_loginScreenFragment_to_homeFragment)
                     } else {
                         Toast.makeText(

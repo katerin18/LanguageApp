@@ -56,11 +56,12 @@ class SignUpPassword : Fragment() {
 
             if (userDataLogicImpl.isValidData(password, PASSWORD_PATTERN)) {
                 if (password == confirmedPassword) {
-                    val userWithPassword = viewModel.combineWithPassword(userDataLogicImpl.hashedPass(password))
+                    val userWithPassword =
+                        viewModel.combineWithPassword(userDataLogicImpl.hashedPass(password))
                     if (userWithPassword != null) {
                         userDataLogicImpl.registerNewUser(userWithPassword)
 
-                        findNavController().navigate(R.id.action_signUpPassword_to_homeFragment)
+                        findNavController().navigate(R.id.action_signUpPassword_to_loginScreenFragment)
                     }
                 } else {
                     Toast.makeText(

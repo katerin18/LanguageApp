@@ -68,7 +68,20 @@
         android:id="@+id/homeFragment"
         android:name="com.example.languageapp.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_firstGameFragment"
+            app:destination="@id/firstGameFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_secondGameFragment"
+            app:destination="@id/secondGameFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_thirdGameFragment"
+            app:destination="@id/thirdGameFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_fourthGameFragment"
+            app:destination="@id/fourthGameFragment" />
+    </fragment>
     <fragment
         android:id="@+id/signUpPassword"
         android:name="com.example.languageapp.signUpIn.SignUpPassword"
@@ -83,4 +96,24 @@
             android:id="@+id/action_signUpPassword_to_loginScreenFragment"
             app:destination="@id/loginScreenFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/thirdGameFragment"
+        android:name="com.example.languageapp.gamesScreens.ThirdGameFragment"
+        android:label="fragment_third_game"
+        tools:layout="@layout/fragment_third_game" />
+    <fragment
+        android:id="@+id/firstGameFragment"
+        android:name="com.example.languageapp.gamesScreens.FirstGameFragment"
+        android:label="fragment_first_game_screen"
+        tools:layout="@layout/fragment_first_game_screen" />
+    <fragment
+        android:id="@+id/secondGameFragment"
+        android:name="com.example.languageapp.gamesScreens.SecondGameFragment"
+        android:label="fragment_second_game"
+        tools:layout="@layout/fragment_second_game" />
+    <fragment
+        android:id="@+id/fourthGameFragment"
+        android:name="com.example.languageapp.gamesScreens.FourthGameFragment"
+        android:label="fragment_fourth_game"
+        tools:layout="@layout/fragment_fourth_game" />
 </navigation>

@@ -79,13 +79,13 @@ class SignUpScreen : Fragment() {
             val lastNameData = lastNameEditText.text.toString()
             val emailData = emailEditText.text.toString()
 
-            val newUserModel = NewUser(
+            val userModelModel = UserModel(
                 firstname = firstNameData,
                 lastname = lastNameData,
                 email = emailData
             )
-            if (userDataLogicImpl.isEverythingOkay(newUserModel)) {
-                viewModel.setRegistrationData(newUserModel)
+            if (userDataLogicImpl.isEverythingOkay(userModelModel)) {
+                viewModel.setRegistrationData(userModelModel)
                 findNavController().navigate(R.id.action_signUpScreen_to_signUpPassword)
             } else {
                 Toast.makeText(requireContext(), "Enter correct data!", Toast.LENGTH_SHORT).show()

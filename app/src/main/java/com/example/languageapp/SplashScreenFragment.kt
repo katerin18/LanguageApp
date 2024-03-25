@@ -19,7 +19,7 @@ class SplashScreenFragment : Fragment() {
 
         Handler().postDelayed({
             if (userDataLogicImpl.isOnBoardingCompleted(requireActivity())) {
-                if (userDataLogicImpl.isUserAuthorized(requireActivity())) {
+                if (userDataLogicImpl.isAnyoneAuthorized(requireActivity())) {
                     findNavController().navigate(R.id.action_splashScreenFragment_to_homeFragment)
                 } else {
                     findNavController().navigate(R.id.action_splashScreenFragment_to_loginScreenFragment)
