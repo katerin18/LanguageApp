@@ -1,7 +1,6 @@
 package com.example.languageapp
 
 import android.content.Context
-import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import com.example.languageapp.signUpIn.EMAIL_PATTERN
 import com.example.languageapp.signUpIn.UserModel
@@ -86,6 +85,28 @@ class UserDataLogicImpl : UserDataInterface {
         return listOf(
             sharedPref.getString(EMAIL_KEY, ""), sharedPref.getString(PASSWORD_KEY, "")
         )
+    }
+
+    override fun getDataUserProfileScreen(requireActivity: FragmentActivity): UserModel {
+        requireActivity.getSharedPreferences(USER_DATA_KEY, Context.MODE_PRIVATE).apply {
+            return UserModel(
+                firstname = getString(USER_FIRST_NAME, "")!!,
+                lastname = getString(USER_LAST_NAME, "")!!,
+                email = getString(USER_EMAIL, "")!!,
+                userImage = getString(USER_IMAGE, "")!!
+            )
+        }
+    }
+
+    override fun putDataUserProfileScreen(userModel: UserModel, context: Context) {
+        val sharedPref = context.getSharedPreferences(USER_DATA_KEY, Context.MODE_PRIVATE)
+        sharedPref
+            .edit()
+            .putString(USER_FIRST_NAME, userModel.firstname)
+            .putString(USER_LAST_NAME, userModel.lastname)
+            .putString(USER_EMAIL, userModel.email)
+            .putString(USER_IMAGE, userModel.userImage)
+            .apply()
     }
 
     override fun isValidData(data: String, needPattern: String): Boolean {

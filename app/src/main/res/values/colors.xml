@@ -10,5 +10,6 @@
     <color name="item_background">#FFF6EB</color>
     <color name="item_chose_background">#F76400</color>
     <color name="card_gray_background">#E5E5E5</color>
+    <color name="red_logout">#C1FF3410</color>
 
 </resources>

@@ -9,14 +9,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
+import com.example.languageapp.signUpIn.UserModel
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
+
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +27,7 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
         val userDataLogicImpl = UserDataLogicImpl()
+        val userImageImpl = UserImageImpl()
         val authorizedEmailPass = userDataLogicImpl.getAuthorizedEmailPass(requireActivity())
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.rec_view_top_users)
@@ -43,18 +46,31 @@ class HomeFragment : Fragment() {
                 email = authorizedEmailPass[0]!!,
                 password = authorizedEmailPass[1]!!
             )
-            textViewName.text =
-                "${authorizedUserData[0].firstname} ${authorizedUserData[0].lastname}"
-            textViewNumOfPoints.text = authorizedUserData[0].score.toString()
-            Picasso.get().load(authorizedUserData[0].userImage).into(imageViewPhoto)
-        }
 
-        lifecycleScope.launch {
+            val userImageBitmap =
+                userImageImpl.getBitmapFromUri(authorizedUserData[0].userImage.toUri())
+            authorizedUserData[0].apply {
+                textViewName.text = "$firstname $lastname"
+                textViewNumOfPoints.text = score.toString()
+                imageViewPhoto.setImageBitmap(userImageBitmap)
+
+                userDataLogicImpl.putDataUserProfileScreen(
+                    UserModel(
+                        firstname = firstname,
+                        lastname = lastname,
+                        email = email,
+                        userImage = userImage
+                    ), requireContext()
+                )
+            }
             val topUsersData = userDataLogicImpl.getTopUsers()
             recyclerView.adapter = TopUsersAdapter(topUsersData)
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
         }
 
+        imageViewPhoto.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_userProfileFragment)
+        }
 
         btnFirstGame.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_firstGameFragment)

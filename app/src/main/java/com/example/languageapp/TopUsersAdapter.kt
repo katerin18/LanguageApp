@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.languageapp.signUpIn.UserModel
-import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class TopUsersAdapter(private val topUsersList: List<UserModel>) :
     RecyclerView.Adapter<TopUsersAdapter.TopUsersViewHolder>() {
@@ -32,10 +35,18 @@ class TopUsersAdapter(private val topUsersList: List<UserModel>) :
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: TopUsersViewHolder, position: Int) {
         val currentItem = topUsersList[position]
-        Picasso.get().load(currentItem.userImage).into(holder.imageViewAvatar)
+        val userImageImpl = UserImageImpl()
+        val currentImageUri = currentItem.userImage.toUri()
+        if (currentItem.userImage.isNotEmpty()) {
+            CoroutineScope(Dispatchers.Main).launch {
+                val userImageBitmap = userImageImpl.getBitmapFromUri(currentImageUri)
+                holder.imageViewAvatar.setImageBitmap(userImageBitmap)
+            }
+        } else {
+            holder.imageViewAvatar.setImageResource(R.color.white)
+        }
         holder.textViewUserName.text = "${currentItem.firstname} ${currentItem.lastname}"
         holder.textViewScore.text = currentItem.score.toString()
         holder.textPoints.text = " points"
     }
-
 }

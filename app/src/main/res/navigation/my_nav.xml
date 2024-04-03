@@ -81,6 +81,9 @@
         <action
             android:id="@+id/action_homeFragment_to_fourthGameFragment"
             app:destination="@id/fourthGameFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpPassword"
@@ -116,4 +119,9 @@
         android:name="com.example.languageapp.gamesScreens.FourthGameFragment"
         android:label="fragment_fourth_game"
         tools:layout="@layout/fragment_fourth_game" />
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.example.languageapp.UserProfileFragment"
+        android:label="fragment_user_profile"
+        tools:layout="@layout/fragment_user_profile" />
 </navigation>

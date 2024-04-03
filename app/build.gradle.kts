@@ -52,6 +52,7 @@ dependencies {
     implementation(platform("io.github.jan-tennert.supabase:bom:2.0.0"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.ktor:ktor-client-android:2.3.8")
+    implementation("io.github.jan-tennert.supabase:storage-kt:2.0.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     implementation("com.squareup.picasso:picasso:2.71828")
