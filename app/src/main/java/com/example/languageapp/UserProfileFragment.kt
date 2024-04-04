@@ -14,6 +14,7 @@ import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.languageapp.signUpIn.UserModel
 import kotlinx.coroutines.launch
 
@@ -32,6 +33,7 @@ class UserProfileFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_user_profile, container, false)
         val userDataLogicImpl = UserDataLogicImpl()
         val textViewUsername = view.findViewById<TextView>(R.id.textView_username)
+        val buttonLogOut = view.findViewById<Button>(R.id.button_logout)
 
         val userImageImpl = UserImageImpl()
 
@@ -53,6 +55,16 @@ class UserProfileFragment : Fragment() {
             pickImageFromGallery()
         }
 
+        buttonLogOut.setOnClickListener {
+            val logoutMethodsImpl = LogoutMethodsImpl()
+
+            logoutMethodsImpl.clearOnBoardingFlag(requireContext())
+            logoutMethodsImpl.clearAuthFlag(requireContext())
+            logoutMethodsImpl.clearUserData(requireContext())
+
+            findNavController().navigate(R.id.action_userProfileFragment_to_loginScreenFragment)
+        }
+
         return view
     }
 
@@ -67,8 +79,8 @@ class UserProfileFragment : Fragment() {
                         byteArray,
                         userData.email
                     )
-                val userImageBitmap = userImImpl.getBitmapFromUri(outputPath.toUri())
-                imageViewAvatar.setImageBitmap(userImageBitmap)
+                    val userImageBitmap = userImImpl.getBitmapFromUri(outputPath.toUri())
+                    imageViewAvatar.setImageBitmap(userImageBitmap)
                 }
             }
         }

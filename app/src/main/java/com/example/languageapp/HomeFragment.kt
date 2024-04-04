@@ -47,12 +47,15 @@ class HomeFragment : Fragment() {
                 password = authorizedEmailPass[1]!!
             )
 
-            val userImageBitmap =
-                userImageImpl.getBitmapFromUri(authorizedUserData[0].userImage.toUri())
+            if (authorizedUserData[0].userImage.isNotEmpty()) {
+                val userImageBitmap =
+                    userImageImpl.getBitmapFromUri(authorizedUserData[0].userImage.toUri())
+                imageViewPhoto.setImageBitmap(userImageBitmap)
+            }
+
             authorizedUserData[0].apply {
                 textViewName.text = "$firstname $lastname"
                 textViewNumOfPoints.text = score.toString()
-                imageViewPhoto.setImageBitmap(userImageBitmap)
 
                 userDataLogicImpl.putDataUserProfileScreen(
                     UserModel(

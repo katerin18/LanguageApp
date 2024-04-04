@@ -49,7 +49,6 @@ class SignUpScreen : Fragment() {
             }
 
             override fun afterTextChanged(p0: Editable?) {}
-
         })
 
         lastNameEditText.addTextChangedListener(object : TextWatcher {

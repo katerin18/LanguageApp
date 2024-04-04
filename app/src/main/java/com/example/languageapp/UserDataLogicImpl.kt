@@ -48,14 +48,6 @@ class UserDataLogicImpl : UserDataInterface {
             existUser
         }
 
-    override fun onBoardingCompleted(context: Context) {
-        val sharedPref = context.getSharedPreferences(PREF_COMPLETE_NAME, Context.MODE_PRIVATE)
-        sharedPref
-            .edit()
-            .putBoolean(FINISHED_STATE_KEY, true)
-            .apply()
-    }
-
     override fun registerNewUser(userModel: UserModel) {
         val supabaseClient = createSupabaseClient(
             supabaseUrl = PROJECT_URL,
@@ -66,7 +58,20 @@ class UserDataLogicImpl : UserDataInterface {
         GlobalScope.launch {
             supabaseClient.from("users").insert(userModel)
         }
-        // TODO: write a logic when there is the same user
+    }
+
+    override fun onBoardingCompleted(context: Context) {
+        val sharedPref = context.getSharedPreferences(PREF_COMPLETE_NAME, Context.MODE_PRIVATE)
+        sharedPref
+            .edit()
+            .putBoolean(FINISHED_STATE_KEY, true)
+            .apply()
+    }
+
+    override fun isOnBoardingCompleted(requireActivity: FragmentActivity): Boolean {
+        val sharedPref =
+            requireActivity.getSharedPreferences(PREF_COMPLETE_NAME, Context.MODE_PRIVATE)
+        return sharedPref.getBoolean(FINISHED_STATE_KEY, false)
     }
 
     override fun makeAuthSharedFlag(context: Context, email: String, password: String) {
@@ -87,15 +92,9 @@ class UserDataLogicImpl : UserDataInterface {
         )
     }
 
-    override fun getDataUserProfileScreen(requireActivity: FragmentActivity): UserModel {
-        requireActivity.getSharedPreferences(USER_DATA_KEY, Context.MODE_PRIVATE).apply {
-            return UserModel(
-                firstname = getString(USER_FIRST_NAME, "")!!,
-                lastname = getString(USER_LAST_NAME, "")!!,
-                email = getString(USER_EMAIL, "")!!,
-                userImage = getString(USER_IMAGE, "")!!
-            )
-        }
+    override fun isAnyoneAuthorized(requireActivity: FragmentActivity): Boolean {
+        val sharedPref = requireActivity.getSharedPreferences(PREF_AUTH_NAME, Context.MODE_PRIVATE)
+        return sharedPref.getBoolean(AUTHORIZED_STATE_KEY, false)
     }
 
     override fun putDataUserProfileScreen(userModel: UserModel, context: Context) {
@@ -109,6 +108,18 @@ class UserDataLogicImpl : UserDataInterface {
             .apply()
     }
 
+    override fun getDataUserProfileScreen(requireActivity: FragmentActivity): UserModel {
+        requireActivity.getSharedPreferences(USER_DATA_KEY, Context.MODE_PRIVATE).apply {
+            return UserModel(
+                firstname = getString(USER_FIRST_NAME, "")!!,
+                lastname = getString(USER_LAST_NAME, "")!!,
+                email = getString(USER_EMAIL, "")!!,
+                userImage = getString(USER_IMAGE, "")!!
+            )
+        }
+    }
+
+
     override fun isValidData(data: String, needPattern: String): Boolean {
         val pattern = Pattern.compile(needPattern)
         return pattern.matcher(data).matches() && data.isNotEmpty()
@@ -118,17 +129,6 @@ class UserDataLogicImpl : UserDataInterface {
         return isValidData(userData.firstname, USERNAME_PATTERN) &&
                 isValidData(userData.lastname, USERNAME_PATTERN) &&
                 isValidData(userData.email, EMAIL_PATTERN)
-    }
-
-    override fun isOnBoardingCompleted(requireActivity: FragmentActivity): Boolean {
-        val sharedPref =
-            requireActivity.getSharedPreferences(PREF_COMPLETE_NAME, Context.MODE_PRIVATE)
-        return sharedPref.getBoolean(FINISHED_STATE_KEY, false)
-    }
-
-    override fun isAnyoneAuthorized(requireActivity: FragmentActivity): Boolean {
-        val sharedPref = requireActivity.getSharedPreferences(PREF_AUTH_NAME, Context.MODE_PRIVATE)
-        return sharedPref.getBoolean(AUTHORIZED_STATE_KEY, false)
     }
 
     override fun hashedPass(input: String): String {
