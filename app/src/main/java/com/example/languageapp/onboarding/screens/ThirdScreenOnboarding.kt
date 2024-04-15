@@ -24,11 +24,11 @@ class ThirdScreenOnboarding : Fragment() {
 
         btnFinish.setOnClickListener {
             userDataLogicImpl.onBoardingCompleted(requireActivity())
-            findNavController().navigate(R.id.action_viewPagerFragment_to_loginScreenFragment)
+            findNavController().navigate(R.id.action_viewPagerFragment_to_chooseLanguageFragment)
         }
         textViewSkip.setOnClickListener {
             userDataLogicImpl.onBoardingCompleted(requireActivity())
-            findNavController().navigate(R.id.action_viewPagerFragment_to_loginScreenFragment)
+            findNavController().navigate(R.id.action_viewPagerFragment_to_chooseLanguageFragment)
         }
 
         return view

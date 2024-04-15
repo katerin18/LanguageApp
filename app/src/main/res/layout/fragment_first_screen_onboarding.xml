@@ -19,7 +19,18 @@
             android:src="@drawable/first_onboard_icon"
             app:layout_constraintBottom_toTopOf="@id/title_first"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/icon_onb_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_1"
+            app:layout_constraintBottom_toTopOf="@id/text_first"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/icon_first" />
 
         <TextView
             android:id="@+id/title_first"
@@ -29,11 +40,10 @@
             android:text="@string/title_first_onboard"
             android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/text_first"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/icon_first"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/icon_onb_1" />
 
         <TextView
             android:id="@+id/text_first"
@@ -45,6 +55,7 @@
             android:gravity="center"
             android:text="@string/text_first_onboard"
             android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@id/btn_next"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_first" />

@@ -7,17 +7,28 @@
     android:orientation="vertical"
     tools:context=".signUpIn.LoginScreenFragment">
 
+    <ImageView
+        android:id="@+id/icon_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_log_in"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginVertical="20dp"/>
+
     <TextView
         android:id="@+id/title_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/fredoka"
         android:gravity="center"
-        android:text="Login"
-        android:textSize="30sp"
+        android:text="For free, join now and start learning"
+        android:textSize="23sp"
+        android:layout_marginHorizontal="40dp"
         app:layout_constraintBottom_toTopOf="@+id/constraint_login"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/icon_login" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_login"
@@ -88,6 +99,19 @@
                     android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView_forgot_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forgot Password"
+                android:textStyle="bold"
+                android:textColor="@color/pink_btn"
+                android:fontFamily="@font/fredoka"
+                android:layout_marginBottom="10dp"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/linear_data_login"/>
+
         </LinearLayout>
 
         <Button

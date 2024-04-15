@@ -46,6 +46,7 @@ class UserProfileFragment : Fragment() {
         if (userData.userImage.isNotEmpty()) {
             lifecycleScope.launch {
                 val userImageBitmap = userImageImpl.getBitmapFromUri(userData.userImage.toUri())
+                imageViewAvatar.scaleType = ImageView.ScaleType.CENTER_CROP
                 imageViewAvatar.setImageBitmap(userImageBitmap)
             }
 

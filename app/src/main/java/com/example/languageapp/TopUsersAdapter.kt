@@ -40,6 +40,7 @@ class TopUsersAdapter(private val topUsersList: List<UserModel>) :
         if (currentItem.userImage.isNotEmpty()) {
             CoroutineScope(Dispatchers.Main).launch {
                 val userImageBitmap = userImageImpl.getBitmapFromUri(currentImageUri)
+                holder.imageViewAvatar.scaleType = ImageView.ScaleType.CENTER_CROP
                 holder.imageViewAvatar.setImageBitmap(userImageBitmap)
             }
         } else {

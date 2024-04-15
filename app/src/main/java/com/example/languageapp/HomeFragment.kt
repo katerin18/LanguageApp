@@ -50,6 +50,7 @@ class HomeFragment : Fragment() {
             if (authorizedUserData[0].userImage.isNotEmpty()) {
                 val userImageBitmap =
                     userImageImpl.getBitmapFromUri(authorizedUserData[0].userImage.toUri())
+                imageViewPhoto.scaleType = ImageView.ScaleType.CENTER_CROP
                 imageViewPhoto.setImageBitmap(userImageBitmap)
             }
 

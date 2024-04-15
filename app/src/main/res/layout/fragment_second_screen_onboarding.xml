@@ -19,7 +19,18 @@
             android:src="@drawable/second_onboard_icon"
             app:layout_constraintBottom_toTopOf="@id/title_second"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/icon_onb_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_2"
+            app:layout_constraintBottom_toTopOf="@id/text_second"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/icon_second" />
 
         <TextView
             android:id="@+id/title_second"
@@ -29,11 +40,10 @@
             android:text="@string/title_second_onboard"
             android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/text_second"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/icon_second"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/icon_onb_2" />
 
         <TextView
             android:id="@+id/text_second"
@@ -45,6 +55,7 @@
             android:gravity="center"
             android:text="@string/text_second_onboard"
             android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@id/btn_more"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_second" />
@@ -56,7 +67,6 @@
             android:layout_marginBottom="15dp"
             android:backgroundTint="@color/blue_btn"
             android:fontFamily="@font/fredoka"
-            android:textStyle="bold"
             android:padding="10dp"
             android:text="@string/text_more_onboard"
             android:textSize="20sp"
@@ -78,6 +88,5 @@
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </LinearLayout>

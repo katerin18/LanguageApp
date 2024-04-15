@@ -37,6 +37,9 @@
             app:destination="@id/loginScreenFragment"
             app:popUpTo="@id/viewPagerFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_viewPagerFragment_to_chooseLanguageFragment"
+            app:destination="@id/chooseLanguageFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginScreenFragment"
@@ -129,5 +132,14 @@
             app:destination="@id/loginScreenFragment"
             app:popUpTo="@id/userProfileFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseLanguageFragment"
+        android:name="com.example.languageapp.chooseLanguage.ChooseLanguageFragment"
+        android:label="fragment_choose_language"
+        tools:layout="@layout/fragment_choose_language" >
+        <action
+            android:id="@+id/action_chooseLanguageFragment_to_loginScreenFragment"
+            app:destination="@id/loginScreenFragment" />
     </fragment>
 </navigation>
