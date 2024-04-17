@@ -109,7 +109,7 @@
         tools:layout="@layout/fragment_third_game" />
     <fragment
         android:id="@+id/firstGameFragment"
-        android:name="com.example.languageapp.gamesScreens.FirstGameFragment"
+        android:name="com.example.languageapp.gamesScreens.firstGame.FirstGameFragment"
         android:label="fragment_first_game_screen"
         tools:layout="@layout/fragment_first_game_screen" />
     <fragment

@@ -41,11 +41,11 @@
             android:id="@+id/name_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/fredoka"
             android:paddingVertical="5dp"
             android:textColor="@color/white"
-            android:fontFamily="@font/fredoka"
-            android:textStyle="bold"
             android:textSize="22sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/textView_hello"
             app:layout_constraintTop_toBottomOf="@id/user_image" />
 
@@ -53,37 +53,37 @@
             android:id="@+id/textView_separator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" | "
-            android:paddingVertical="3dp"
-            app:layout_constraintTop_toBottomOf="@id/user_image"
-            android:textSize="22sp"
-            android:textColor="@color/white"
             android:fontFamily="@font/fredoka"
-            app:layout_constraintStart_toEndOf="@id/name_textView" />
+            android:paddingVertical="3dp"
+            android:text=" | "
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:layout_constraintStart_toEndOf="@id/name_textView"
+            app:layout_constraintTop_toBottomOf="@id/user_image" />
 
         <TextView
             android:id="@+id/textView_numOf_points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="12"
-            android:paddingVertical="5dp"
-            app:layout_constraintTop_toBottomOf="@id/user_image"
-            android:textSize="22sp"
-            android:textColor="@color/white"
             android:fontFamily="@font/fredoka"
-            app:layout_constraintStart_toEndOf="@id/textView_separator" />
+            android:paddingVertical="5dp"
+            android:text="12"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:layout_constraintStart_toEndOf="@id/textView_separator"
+            app:layout_constraintTop_toBottomOf="@id/user_image" />
 
         <TextView
             android:id="@+id/textView_points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" points"
-            android:paddingVertical="5dp"
-            app:layout_constraintTop_toBottomOf="@id/user_image"
-            android:textSize="22sp"
-            android:textColor="@color/white"
             android:fontFamily="@font/fredoka"
-            app:layout_constraintStart_toEndOf="@id/textView_numOf_points" />
+            android:paddingVertical="5dp"
+            android:text=" points"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:layout_constraintStart_toEndOf="@id/textView_numOf_points"
+            app:layout_constraintTop_toBottomOf="@id/user_image" />
 
         <TextView
             android:id="@+id/textView_subtitle"
@@ -106,6 +106,7 @@
         android:layout_marginVertical="8dp"
         android:fontFamily="@font/fredoka"
         android:text="Top users"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -122,6 +123,7 @@
         android:layout_marginHorizontal="15dp"
         android:fontFamily="@font/fredoka"
         android:text="Available exercises"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -147,13 +149,14 @@
             android:id="@+id/title_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Guess the animal"
-            android:textSize="13sp"
             android:fontFamily="@font/fredoka"
+            android:text="Guess the animal"
+            android:textColor="@color/black"
+            android:textSize="13sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/btn_first_game"
             app:layout_constraintEnd_toStartOf="@id/btn_second_game"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_first_game" />
 
         <Button
             android:id="@+id/btn_second_game"
@@ -173,13 +176,14 @@
             android:id="@+id/title_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Word practice"
-            android:textSize="13sp"
             android:fontFamily="@font/fredoka"
+            android:text="Word practice"
+            android:textColor="@color/black"
+            android:textSize="13sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/btn_second_game"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_first_game"/>
+            app:layout_constraintStart_toEndOf="@id/btn_first_game"
+            app:layout_constraintTop_toBottomOf="@id/btn_second_game" />
 
         <Button
             android:id="@+id/btn_third_game"
@@ -198,13 +202,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Listening"
-            android:textSize="13sp"
             android:fontFamily="@font/fredoka"
+            android:text="Listening"
+            android:textColor="@color/black"
+            android:textSize="13sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/btn_fourth_game"
-            app:layout_constraintTop_toBottomOf="@id/btn_third_game"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_third_game" />
 
         <Button
             android:id="@+id/btn_fourth_game"
@@ -214,7 +219,7 @@
             android:fontFamily="@font/fredoka"
             android:padding="25dp"
             android:text="🎮"
-            android:textSize="17sp"
+            android:textSize="47sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btn_third_game"
@@ -223,13 +228,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Online game"
-            android:textSize="13sp"
             android:fontFamily="@font/fredoka"
+            android:text="Online game"
+            android:textColor="@color/black"
+            android:textSize="13sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/btn_fourth_game"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_first_game"/>
+            app:layout_constraintStart_toEndOf="@id/btn_first_game"
+            app:layout_constraintTop_toBottomOf="@id/btn_fourth_game" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

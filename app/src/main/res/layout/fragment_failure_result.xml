@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".gamesScreens.firstGame.FirstGameFragment">
+    tools:context=".gamesScreens.firstGame.FailureResult">
 
     <LinearLayout
-        android:id="@+id/header_guessTheAnimal"
+        android:id="@+id/header_bad_res"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary_color"
+        android:background="@color/pink_btn"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,50 +34,34 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView_task"
+    <TextView
+        android:id="@+id/icon_failure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:src="@drawable/racoon"
+        android:layout_marginVertical="20dp"
+        android:text="😿"
+        android:textSize="160sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header_guessTheAnimal" />
+        app:layout_constraintTop_toBottomOf="@id/header_bad_res" />
 
     <TextView
-        android:id="@+id/textView_write_answer"
-        android:layout_width="match_parent"
+        android:id="@+id/textView_failure"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="15dp"
         android:fontFamily="@font/fredoka"
-        android:paddingVertical="10dp"
-        android:text="Write who is on image"
+        android:gravity="center"
+        android:text="Eh? Wrong answer :(\nThis is racoon"
         android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@id/imageView_task" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout_first_answer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintTop_toBottomOf="@id/textView_write_answer">
-
-        <EditText
-            android:id="@+id/editText_first_answer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:autofillHints=""
-            android:fontFamily="@font/fredoka"
-            android:hint="Your answer"
-            android:inputType="text"
-            android:textColor="@color/black" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/icon_failure" />
 
     <Button
-        android:id="@+id/button_check_first_answer"
+        android:id="@+id/button_next_ans"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
@@ -85,10 +69,26 @@
         android:backgroundTint="@color/blue_btn"
         android:fontFamily="@font/fredoka"
         android:padding="15dp"
-        android:text="Check"
+        android:text="Next"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayout_first_answer" />
+        app:layout_constraintTop_toBottomOf="@id/textView_failure" />
+
+    <Button
+        android:id="@+id/button_try_again"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="10dp"
+        android:backgroundTint="@color/blue_btn"
+        android:fontFamily="@font/fredoka"
+        android:padding="15dp"
+        android:text="Try again"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/button_next_ans" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

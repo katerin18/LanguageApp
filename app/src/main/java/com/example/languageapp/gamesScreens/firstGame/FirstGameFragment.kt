@@ -1,4 +1,4 @@
-package com.example.languageapp.gamesScreens
+package com.example.languageapp.gamesScreens.firstGame
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
