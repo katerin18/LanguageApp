@@ -111,7 +111,14 @@
         android:id="@+id/firstGameFragment"
         android:name="com.example.languageapp.gamesScreens.firstGame.FirstGameFragment"
         android:label="fragment_first_game_screen"
-        tools:layout="@layout/fragment_first_game_screen" />
+        tools:layout="@layout/fragment_first_game_screen" >
+        <action
+            android:id="@+id/action_firstGameFragment_to_successResult"
+            app:destination="@id/successResult" />
+        <action
+            android:id="@+id/action_firstGameFragment_to_failureResult"
+            app:destination="@id/failureResult" />
+    </fragment>
     <fragment
         android:id="@+id/secondGameFragment"
         android:name="com.example.languageapp.gamesScreens.SecondGameFragment"
@@ -142,4 +149,14 @@
             android:id="@+id/action_chooseLanguageFragment_to_loginScreenFragment"
             app:destination="@id/loginScreenFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/failureResult"
+        android:name="com.example.languageapp.gamesScreens.firstGame.FailureResult"
+        android:label="fragment_failure_result"
+        tools:layout="@layout/fragment_failure_result" />
+    <fragment
+        android:id="@+id/successResult"
+        android:name="com.example.languageapp.gamesScreens.firstGame.SuccessResult"
+        android:label="fragment_success_result"
+        tools:layout="@layout/fragment_success_result" />
 </navigation>

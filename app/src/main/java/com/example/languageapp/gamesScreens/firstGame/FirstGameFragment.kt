@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.languageapp.R
 import java.util.Locale
 
@@ -25,10 +25,9 @@ class FirstGameFragment : Fragment() {
         buttonCheck.setOnClickListener {
             val userAnswer = editTextAnswer.text.toString()
             if (userAnswer.lowercase(Locale.ROOT) == "racoon") {
-                Toast.makeText(context, "That's right!", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_firstGameFragment_to_successResult)
             } else {
-                Toast.makeText(context, "Wrong answer! This is racoon...", Toast.LENGTH_SHORT)
-                    .show()
+                findNavController().navigate(R.id.action_firstGameFragment_to_failureResult)
             }
         }
 
