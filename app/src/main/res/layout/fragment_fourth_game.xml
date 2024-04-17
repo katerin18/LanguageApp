@@ -10,12 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primary_color"
-        android:orientation="vertical">
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/white_icon_back"
+            android:layout_marginHorizontal="15dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="13dp"
             android:layout_marginVertical="16dp"
             android:fontFamily="@font/fredoka"
             android:padding="7dp"

@@ -131,59 +131,105 @@
 
         <Button
             android:id="@+id/btn_first_game"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:backgroundTint="@color/blue_btn"
             android:fontFamily="@font/fredoka"
             android:padding="20dp"
-            android:text="🐻‍❄️\nGuess the animal"
-            android:textSize="17sp"
+            android:text="🐻‍❄️"
+            android:textSize="47sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/btn_second_game"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/title_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guess the animal"
+            android:textSize="13sp"
+            android:fontFamily="@font/fredoka"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/btn_first_game"
+            app:layout_constraintEnd_toStartOf="@id/btn_second_game"
+            app:layout_constraintStart_toStartOf="parent"/>
+
         <Button
             android:id="@+id/btn_second_game"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:backgroundTint="@color/pink_btn"
             android:fontFamily="@font/fredoka"
             android:padding="20dp"
-            android:text="✏️\nWord practice"
-            android:textSize="17sp"
+            android:text="✏️"
+            android:textSize="47sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btn_first_game"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/title_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Word practice"
+            android:textSize="13sp"
+            android:fontFamily="@font/fredoka"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/btn_second_game"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_first_game"/>
+
         <Button
             android:id="@+id/btn_third_game"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:backgroundTint="@color/orange_btn"
             android:fontFamily="@font/fredoka"
             android:padding="25dp"
-            android:text="🔊\nListening"
-            android:textSize="17sp"
+            android:text="🔊"
+            android:textSize="47sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/btn_fourth_game"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_first_game" />
+            app:layout_constraintTop_toBottomOf="@id/title_1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Listening"
+            android:textSize="13sp"
+            android:fontFamily="@font/fredoka"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/btn_fourth_game"
+            app:layout_constraintTop_toBottomOf="@id/btn_third_game"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <Button
             android:id="@+id/btn_fourth_game"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:backgroundTint="@color/green_btn"
             android:fontFamily="@font/fredoka"
             android:padding="25dp"
-            android:text="🎮\nOnline game"
+            android:text="🎮"
             android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btn_third_game"
-            app:layout_constraintTop_toBottomOf="@id/btn_second_game" />
+            app:layout_constraintTop_toBottomOf="@id/title_2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Online game"
+            android:textSize="13sp"
+            android:fontFamily="@font/fredoka"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/btn_fourth_game"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_first_game"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

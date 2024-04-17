@@ -5,6 +5,7 @@
     <color name="blue_btn">#5B7BFE</color>
     <color name="pink_btn">#D6185D</color>
     <color name="orange_btn">#F76400</color>
+    <color name="logout_btn">#D3F74600</color>
     <color name="green_btn">#5BA890</color>
     <color name="primary_color">#410FA3</color>
     <color name="item_background">#FFF6EB</color>

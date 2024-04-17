@@ -7,6 +7,35 @@
     android:orientation="vertical"
     tools:context=".signUpIn.LoginScreenFragment">
 
+    <LinearLayout
+        android:id="@+id/header_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_color"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="15dp"
+            android:src="@drawable/thin_back"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="23dp"
+            android:layout_marginVertical="16dp"
+            android:fontFamily="@font/fredoka"
+            android:gravity="center"
+            android:text="Login"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/icon_login"
         android:layout_width="wrap_content"
@@ -14,7 +43,7 @@
         android:src="@drawable/icon_log_in"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_login"
         android:layout_marginVertical="20dp"/>
 
     <TextView
@@ -26,7 +55,6 @@
         android:text="For free, join now and start learning"
         android:textSize="23sp"
         android:layout_marginHorizontal="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraint_login"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/icon_login" />
 
@@ -35,8 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/title_login">
 
         <LinearLayout
             android:id="@+id/linear_data_login"

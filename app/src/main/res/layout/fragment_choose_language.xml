@@ -8,6 +8,30 @@
     tools:context=".chooseLanguage.ChooseLanguageFragment">
 
     <LinearLayout
+        android:id="@+id/header_choose_lang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_color"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="13dp"
+            android:layout_marginVertical="16dp"
+            android:fontFamily="@font/fredoka"
+            android:padding="7dp"
+            android:gravity="center"
+            android:text="Language select"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
